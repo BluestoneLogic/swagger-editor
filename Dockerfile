@@ -1,8 +1,10 @@
-FROM alpine:3.4
+FROM centos:7
 
-MAINTAINER fehguy
+MAINTAINER TestUser
 
-RUN apk add --update nginx
+RUN yum install epel-release -y
+RUN yum install nginx -y
+
 RUN mkdir -p /run/nginx
 
 COPY nginx.conf /etc/nginx/
