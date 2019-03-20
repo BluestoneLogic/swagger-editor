@@ -2,6 +2,8 @@ FROM centos:7
 
 MAINTAINER jlevin
 
+COPY ./docker-run.sh /
+
 RUN yum install epel-release -y \
 	&& yum install nginx -y \
 	&& yum clean all -y
@@ -41,4 +43,4 @@ EXPOSE 8080
 
 USER 1001
 
-CMD ["sh", "/usr/share/nginx/docker-run.sh"]
+CMD ["sh", "/docker-run.sh"]
