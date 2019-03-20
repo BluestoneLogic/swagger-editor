@@ -9,10 +9,12 @@ RUN yum install epel-release -y \
 	&& yum clean all -y
 
 RUN mkdir -p /run/nginx \
+	&& chown -R 1001:0 /run \
 	&& chown -R 1001:0 /etc/nginx \
 	&& chown -R 1001:0 /usr/share/nginx/html \
 	&& chown -R 1001:0 docker-run.sh \
 	&& chown -R 1001:0 /var/lib/nginx \
+	&& chmod -R g=u /run \
 	&& chmod -R g=u /etc/nginx \
 	&& chmod -R g=u /usr/share/nginx/html \
 	&& chmod -R g=u docker-run.sh \
