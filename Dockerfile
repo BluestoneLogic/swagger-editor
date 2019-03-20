@@ -12,9 +12,11 @@ RUN mkdir -p /run/nginx \
 	&& chown -R 1001:0 /etc/nginx \
 	&& chown -R 1001:0 /usr/share/nginx/html \
 	&& chown -R 1001:0 docker-run.sh \
+	&& chown -R 1001:0 /var/lib/nginx \
 	&& chmod -R g=u /etc/nginx \
 	&& chmod -R g=u /usr/share/nginx/html \
-	&& chmod -R g=u docker-run.sh
+	&& chmod -R g=u docker-run.sh \
+	&& chmod -R g=u /var/lib/nginx
 
 RUN touch /var/log/nginx/error.log \
     && touch /var/log/nginx/access.log \
@@ -26,6 +28,8 @@ RUN touch /var/log/nginx/error.log \
     && chmod -R g=u /var/log/nginx \
     && chmod -R g=u /var/log/nginx/error.log \
     && chmod -R g=u /var/log/nginx/access.log
+
+RUN chmod g=u /etc/passwd
 
 COPY nginx.conf /etc/nginx/
 
